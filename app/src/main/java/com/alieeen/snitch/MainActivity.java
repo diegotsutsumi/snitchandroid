@@ -5,37 +5,57 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 
+import com.alieeen.snitch.fragments.AboutFragment;
+import com.alieeen.snitch.fragments.CamerasFragment;
+import com.alieeen.snitch.fragments.EventsFragment;
+import com.alieeen.snitch.fragments.LiveVideoFragment;
+import com.alieeen.snitch.fragments.MyAccountFragment;
+import com.alieeen.snitch.fragments.SettingsFragment;
+import com.alieeen.snitch.loginfragments.Login01Fragment;
+
 import org.androidannotations.annotations.EActivity;
 
-@EActivity
-public class MainActivity extends ActionBarActivity {
+import it.neokree.materialnavigationdrawer.MaterialNavigationDrawer;
+import it.neokree.materialnavigationdrawer.elements.MaterialAccount;
+import it.neokree.materialnavigationdrawer.elements.listeners.MaterialAccountListener;
+
+
+public class MainActivity extends MaterialNavigationDrawer implements MaterialAccountListener {
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+    public void init(Bundle savedInstanceState) {
+
+        // add accounts
+        MaterialAccount account = new MaterialAccount(this.getResources(),"Casa","",null, R.drawable.header_background);
+        this.addAccount(account);
+
+        MaterialAccount account2 = new MaterialAccount(this.getResources(),"Empresa","",null,R.drawable.header_background);
+        this.addAccount(account2);
+
+        // set listener
+        this.setAccountListener(this);
+
+        // create sections
+        this.addSection(newSection("Eventos", R.drawable.ic_eventos, new EventsFragment()));
+        this.addSection(newSection("Câmeras", R.drawable.ic_camera, new CamerasFragment()));
+        this.addSection(newSection("Ao vivo", R.drawable.ic_livevideo, new LiveVideoFragment()));
+        this.addSection(newSection("Minha Conta", R.drawable.ic_account, new MyAccountFragment()));
+        //this.addSection(newSection("Section 2",new FragmentIndex()));
+        //this.addSection(newSection("Section 3",R.drawable.ic_mic_white_24dp,new FragmentButton()).setSectionColor(Color.parseColor("#9c27b0")));
+        //this.addSection(newSection("Section",R.drawable.ic_hotel_grey600_24dp,new FragmentButton()).setSectionColor(Color.parseColor("#03a9f4")));
+
+        // create bottom section
+        this.addBottomSection(newSection("Configurações",R.drawable.ic_settings,new SettingsFragment()));
+        this.addBottomSection(newSection("Sobre",R.drawable.ic_menu_info,new AboutFragment()));
     }
 
-
     @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.menu_main, menu);
-        return true;
+    public void onAccountOpening(MaterialAccount account) {
+
     }
 
     @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
-        int id = item.getItemId();
+    public void onChangeAccount(MaterialAccount newAccount) {
 
-        //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
-            return true;
-        }
-
-        return super.onOptionsItemSelected(item);
     }
 }

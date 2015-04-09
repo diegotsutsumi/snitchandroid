@@ -61,7 +61,7 @@ public class SplashScreen extends ActionBarActivity implements Runnable{
         Intent i;
 
         if (isLoggedIn) {
-            i = new Intent(this, MainActivity_.class);
+            i = new Intent(this, MainActivity.class);
         } else {
             i = new Intent(this, WalkthroughActivity_.class);
         }

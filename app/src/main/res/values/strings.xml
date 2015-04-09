@@ -5,13 +5,16 @@
     <string name="action_settings">Settings</string>
 
     <string name="walktrough01_title">Vigilância 24 horas</string>
-    <string name="walktrough01_description">Polen it’s a new and simple way to donate for charity without spend your own money</string>
+    <string name="walktrough01_description">Fique tranquilo enquanto o Snitch trabalha por você vigiando a sua casa</string>
 
-    <string name="walktrough02_title">Back the projects you like</string>
-    <string name="walktrough02_description">Select what are your interests and we’ll show you causes that you might like</string>
+    <string name="walktrough02_title">Vídeo</string>
+    <string name="walktrough02_description">Em qualquer lugar do mundo, tenha acesso às imagens da sua casa em tempo real</string>
 
-    <string name="walktrough03_title">Small actions, big changes</string>
-    <string name="walktrough03_description">Complete goals doing little and quick tasks, you change lifes and earn points</string>
+    <string name="walktrough03_title">Eventos</string>
+    <string name="walktrough03_description">O Snitch te envia fotos de todas as movimentações na sua casa</string>
+
+
+
     <string name="title_activity_splash_screen">SplashScreen</string>
     <string name="title_activity_walkthrough">WalkthroughActivity</string>
     <string name="title_activity_login">LoginActivity</string>

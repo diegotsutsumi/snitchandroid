@@ -56,7 +56,7 @@ public class WalkthroughActivity extends ActionBarActivity {
             public void onPageSelected(int position) {
                 currentPage = position;
 
-                if (position == 3) {
+                if (position == 2) {
                     DoneButton.setVisibility(View.VISIBLE);
                     NextButton.setVisibility(View.INVISIBLE);
                 } else {

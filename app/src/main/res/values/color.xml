@@ -17,7 +17,8 @@
     <item name="light_grey" type="color">#FFF6F6F6</item>
     <item name="dark_grey" type="color">#424242</item>
     <item name="medium_grey" type="color">#d6d6d6</item>
-    <item name="text_white" type="color">#FFF</item>
+    <item name="text_white" type="color">#EEE</item>
+    <item name="topBarLogin" type="color">#292929</item>
 
     <item name="accent" type="color">#C6360C</item>
     <item name="statusBarRed" type="color">#9E2B09</item>
@@ -25,6 +26,7 @@
 
     <item name="background" type="color">#343434</item>
     <item name="background_light" type="color">#595959</item>
+    <item name="text_grey" type="color">#E4E4E4</item>
 
     <item name="colorPrimary" type="color">#A42E0B</item>
     <item name="colorPrimaryDark" type="color">#832408</item>
