@@ -2,13 +2,30 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.alieeen.snitch" >
 
+
+    <uses-permission android:name="android.permission.READ_PHONE_STATE"/>
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.GET_ACCOUNTS" />
+    <uses-permission android:name="android.permission.WAKE_LOCK" />
+    <uses-permission android:name="com.google.android.c2dm.permission.RECEIVE" />
+    <uses-permission android:name="android.permission.READ_CONTACT" />
+
+    <permission
+        android:name="com.alieeen.snitchold.permission.C2D_MESSAGE"
+        android:protectionLevel="signature" />
+
+    <uses-permission android:name="com.example.gcmclient.permission.C2D_MESSAGE" />
+
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
-        android:theme="@style/AppTheme" >
+        android:theme="@style/AppTheme"
+        android:name=".SnitchApplication">
+
+
         <activity
-            android:name=".MainActivity"
+            android:name=".MainActivity_"
             android:label="@string/app_name"
             android:theme="@style/MyNavigationDrawerTheme">
 
@@ -22,6 +39,9 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
+        <service android:name=".service.NotificationIntentService" />
+
         <activity
             android:name=".WalkthroughActivity_"
             android:label="@string/title_activity_walkthrough" >
@@ -30,6 +50,10 @@
             android:name=".LoginActivity_"
             android:label="@string/title_activity_login" >
         </activity>
+
+        <meta-data
+            android:name="com.google.android.gms.version"
+            android:value="@integer/google_play_services_version" />
     </application>
 
 </manifest>

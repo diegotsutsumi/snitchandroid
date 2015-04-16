@@ -19,8 +19,9 @@ import it.neokree.materialnavigationdrawer.MaterialNavigationDrawer;
 import it.neokree.materialnavigationdrawer.elements.MaterialAccount;
 import it.neokree.materialnavigationdrawer.elements.listeners.MaterialAccountListener;
 
-
+@EActivity
 public class MainActivity extends MaterialNavigationDrawer implements MaterialAccountListener {
+
 
     @Override
     public void init(Bundle savedInstanceState) {

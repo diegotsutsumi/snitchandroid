@@ -2,13 +2,6 @@
 <items version="2" >
 
     <item
-        jar="/Users/alinekborges/.gradle/caches/modules-2/files-2.1/org.androidannotations/androidannotations-api/3.0.1/beb7e0a75c753383e7ef68c0e1639999db301c33/androidannotations-api-3.0.1.jar"
-        jumboMode="false"
-        revision="21.1.2"
-        sha1="beb7e0a75c753383e7ef68c0e1639999db301c33">
-        <dex dex="/Users/alinekborges/Documents/Android/Snitch/SnitchApp/app/build/intermediates/pre-dexed/debug/androidannotations-api-3.0.1-164af4544248f406a8334467a91b674e0d62e116.jar" />
-    </item>
-    <item
         jar="/Users/alinekborges/Documents/Android/Snitch/SnitchApp/app/build/intermediates/exploded-aar/com.viewpagerindicator/library/2.4.1/classes.jar"
         jumboMode="false"
         revision="21.1.2"
@@ -16,11 +9,11 @@
         <dex dex="/Users/alinekborges/Documents/Android/Snitch/SnitchApp/app/build/intermediates/pre-dexed/debug/classes-5808b2f0060e87cc6a7a052fdec0ffd3a5b11274.jar" />
     </item>
     <item
-        jar="/Users/alinekborges/Documents/Android/Snitch/SnitchApp/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/21.0.3/classes.jar"
+        jar="/Users/alinekborges/.gradle/caches/modules-2/files-2.1/org.androidannotations/androidannotations-api/3.0.1/beb7e0a75c753383e7ef68c0e1639999db301c33/androidannotations-api-3.0.1.jar"
         jumboMode="false"
         revision="21.1.2"
-        sha1="81d42bf983a8741f4888a6e333e454e4a5e0eeb7">
-        <dex dex="/Users/alinekborges/Documents/Android/Snitch/SnitchApp/app/build/intermediates/pre-dexed/debug/classes-26139fd5d8ad8e922f9a1ba06e3d924600473464.jar" />
+        sha1="beb7e0a75c753383e7ef68c0e1639999db301c33">
+        <dex dex="/Users/alinekborges/Documents/Android/Snitch/SnitchApp/app/build/intermediates/pre-dexed/debug/androidannotations-api-3.0.1-164af4544248f406a8334467a91b674e0d62e116.jar" />
     </item>
     <item
         jar="/Users/alinekborges/Documents/Android/Snitch/SnitchAndroidNew/app/build/intermediates/exploded-aar/it.neokree/MaterialNavigationDrawer/1.3.3/classes.jar"
@@ -30,6 +23,13 @@
         <dex dex="/Users/alinekborges/Documents/Android/Snitch/SnitchAndroidNew/app/build/intermediates/pre-dexed/debug/classes-f0dd25e599f0a0cabbf027a86e87ff7b31dbecd7.jar" />
     </item>
     <item
+        jar="/Users/alinekborges/Documents/Android/Snitch/SnitchApp/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/21.0.3/classes.jar"
+        jumboMode="false"
+        revision="21.1.2"
+        sha1="81d42bf983a8741f4888a6e333e454e4a5e0eeb7">
+        <dex dex="/Users/alinekborges/Documents/Android/Snitch/SnitchApp/app/build/intermediates/pre-dexed/debug/classes-26139fd5d8ad8e922f9a1ba06e3d924600473464.jar" />
+    </item>
+    <item
         jar="/Users/alinekborges/Documents/Android/Snitch/SnitchAndroidNew/app/build/intermediates/exploded-aar/com.android.support/cardview-v7/21.0.0/classes.jar"
         jumboMode="false"
         revision="21.1.2"
@@ -37,18 +37,18 @@
         <dex dex="/Users/alinekborges/Documents/Android/Snitch/SnitchAndroidNew/app/build/intermediates/pre-dexed/debug/classes-48307ec31a28b73613ba92b1c64016cbea8dd86f.jar" />
     </item>
     <item
-        jar="/Users/alinekborges/Documents/Android/Snitch/SnitchAndroidNew/app/build/intermediates/exploded-aar/com.viewpagerindicator/library/2.4.1/classes.jar"
-        jumboMode="false"
-        revision="21.1.2"
-        sha1="88e8e18d365173ad04a543d76c157e0b644f0b3f">
-        <dex dex="/Users/alinekborges/Documents/Android/Snitch/SnitchAndroidNew/app/build/intermediates/pre-dexed/debug/classes-e17c10be2b3f1a9ce463d35ad599826a86cfd9e5.jar" />
-    </item>
-    <item
         jar="/Users/alinekborges/Library/Android/sdk/extras/android/m2repository/com/android/support/support-annotations/21.0.3/support-annotations-21.0.3.jar"
         jumboMode="false"
         revision="21.1.2"
         sha1="4b74cefe1f0c1b819e7260c8627a14674e37fd35">
         <dex dex="/Users/alinekborges/Documents/Android/Snitch/SnitchApp/app/build/intermediates/pre-dexed/debug/support-annotations-21.0.3-eb077b6a8f4bb486b8a81d4ac27db1aeabe5c737.jar" />
+    </item>
+    <item
+        jar="/Users/alinekborges/Documents/Android/Snitch/SnitchAndroidNew/app/build/intermediates/exploded-aar/com.viewpagerindicator/library/2.4.1/classes.jar"
+        jumboMode="false"
+        revision="21.1.2"
+        sha1="88e8e18d365173ad04a543d76c157e0b644f0b3f">
+        <dex dex="/Users/alinekborges/Documents/Android/Snitch/SnitchAndroidNew/app/build/intermediates/pre-dexed/debug/classes-e17c10be2b3f1a9ce463d35ad599826a86cfd9e5.jar" />
     </item>
     <item
         jar="/Users/alinekborges/Documents/Android/Snitch/SnitchApp/app/build/intermediates/exploded-aar/org.lucasr.twowayview/twowayview/0.1.4/classes.jar"
@@ -65,18 +65,18 @@
         <dex dex="/Users/alinekborges/Documents/Android/Snitch/SnitchApp/app/build/intermediates/pre-dexed/debug/classes-917a68b31e4baef0e4c86767bf87bf2b4b700d33.jar" />
     </item>
     <item
-        jar="/Users/alinekborges/Documents/Android/Snitch/SnitchApp/app/build/intermediates/exploded-aar/com.android.support/recyclerview-v7/21.0.0/classes.jar"
-        jumboMode="false"
-        revision="21.1.2"
-        sha1="efeda77c808750cb670ee9c48d8a1835d89dbcb2">
-        <dex dex="/Users/alinekborges/Documents/Android/Snitch/SnitchApp/app/build/intermediates/pre-dexed/debug/classes-e295efe020cc6a62404a9cd4cfa5deeca466f3d8.jar" />
-    </item>
-    <item
         jar="/Users/alinekborges/Documents/Android/Snitch/SnitchApp/app/build/intermediates/exploded-aar/com.android.support/cardview-v7/21.0.0/classes.jar"
         jumboMode="false"
         revision="21.1.2"
         sha1="7d2525cba8ed61fff102977caed964fc22061e34">
         <dex dex="/Users/alinekborges/Documents/Android/Snitch/SnitchApp/app/build/intermediates/pre-dexed/debug/classes-1f8624bc6b6d7095c17451ed60ff15b85ff04c43.jar" />
+    </item>
+    <item
+        jar="/Users/alinekborges/Documents/Android/Snitch/SnitchApp/app/build/intermediates/exploded-aar/com.android.support/recyclerview-v7/21.0.0/classes.jar"
+        jumboMode="false"
+        revision="21.1.2"
+        sha1="efeda77c808750cb670ee9c48d8a1835d89dbcb2">
+        <dex dex="/Users/alinekborges/Documents/Android/Snitch/SnitchApp/app/build/intermediates/pre-dexed/debug/classes-e295efe020cc6a62404a9cd4cfa5deeca466f3d8.jar" />
     </item>
     <item
         jar="/Users/alinekborges/Documents/Android/Snitch/SnitchAndroidNew/app/build/intermediates/exploded-aar/com.android.support/recyclerview-v7/21.0.0/classes.jar"
@@ -133,6 +133,13 @@
         revision="21.1.2"
         sha1="685d0b2c590447e85284ed84712cb363ba04eff8">
         <dex dex="/Users/alinekborges/Documents/Android/Snitch/SnitchAndroidNew/app/build/intermediates/pre-dexed/debug/support-annotations-22.0.0-1e7be89424c17b424a735735e1834f13fcbfe245.jar" />
+    </item>
+    <item
+        jar="/Users/alinekborges/Documents/Android/Snitch/SnitchAndroidNew/app/build/intermediates/exploded-aar/jp.wasabeef/recyclerview-animators/1.1.3/classes.jar"
+        jumboMode="false"
+        revision="21.1.2"
+        sha1="ca0d5b932bacc9e1905a7886234f13e7ce88ae79">
+        <dex dex="/Users/alinekborges/Documents/Android/Snitch/SnitchAndroidNew/app/build/intermediates/pre-dexed/debug/classes-884d6b1d6c5629f440436a90b0f4dce0e398be70.jar" />
     </item>
     <item
         jar="/Users/alinekborges/Documents/Android/Snitch/SnitchApp/app/build/intermediates/exploded-aar/com.android.support/support-v4/21.0.3/libs/internal_impl-21.0.3.jar"

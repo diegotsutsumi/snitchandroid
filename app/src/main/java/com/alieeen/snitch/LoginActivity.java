@@ -1,18 +1,23 @@
 package com.alieeen.snitch;
 
+import android.content.Context;
 import android.content.Intent;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
+import android.telephony.TelephonyManager;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.Toast;
 
 import com.alieeen.snitch.adapter.LoginAdapter;
 import com.alieeen.snitch.adapter.WalkthroughAdapter;
+import com.alieeen.snitch.rest.SnitchHttpClient;
 import com.alieeen.snitch.util.NonScrollableViewPager;
 
+import org.androidannotations.annotations.Background;
 import org.androidannotations.annotations.EActivity;
 
 @EActivity
@@ -20,13 +25,21 @@ public class LoginActivity extends ActionBarActivity {
 
     private LoginAdapter mAdapter;
     private NonScrollableViewPager mPager;
+    private String phoneNumber;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 
-        mAdapter = new LoginAdapter(getSupportFragmentManager());
+        phoneNumber = getPhoneNumber();
+        if (phoneNumber.isEmpty()) {
+            mAdapter = new LoginAdapter(getSupportFragmentManager(), false);
+        } else {
+            mAdapter = new LoginAdapter(getSupportFragmentManager(), false);
+        }
+
+
 
         mPager = (NonScrollableViewPager)findViewById(R.id.pager);
         mPager.setAdapter(mAdapter);
@@ -39,21 +52,31 @@ public class LoginActivity extends ActionBarActivity {
         login_button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                tryLogin();
+                /*
                 if (mPager.getCurrentItem() == 0) {
                     //primeira página, login user/senha
-                    if(tryLogin()) {
-                        mPager.setCurrentItem(1, true);
-                    }
-                    login_button.setText("CONECTAR");
+                    checkLoginPassword();
                 }
                 else if (mPager.getCurrentItem() == 1)  {
                     if (tryUrl()) {
                         Intent intent = new Intent(LoginActivity.this, MainActivity.class);
                         startActivity(intent);
                     }
-                }
+                }*/
             }
         });
+
+    }
+
+    private String getPhoneNumber() {
+
+        TelephonyManager tMgr = (TelephonyManager)this.getSystemService(Context.TELEPHONY_SERVICE);
+        String mPhoneNumber = tMgr.getLine1Number();
+
+
+
+        return mPhoneNumber;
 
     }
 
@@ -63,13 +86,27 @@ public class LoginActivity extends ActionBarActivity {
 
     }
 
-    private boolean tryLogin() {
+    @Background
+    public void tryLogin() {
     //TODO
         if (validLogin()) {
 
         }
 
-        return true;
+        SnitchHttpClient snitchHttp = new SnitchHttpClient();
+        boolean result = snitchHttp.doLogin(getApplicationContext(), "admin", "admin1", "04191774268");
+
+        if (result) {
+
+            //snitchHttp.saveLogin(getApplicationContext(), "admin","admin1", "041");
+
+            Intent intent = new Intent();
+            intent.setClass(getApplicationContext(), MainActivity_.class);
+            startActivity(intent);
+            finish();
+        }
+
+
     }
 
     private boolean validLogin() {

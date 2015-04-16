@@ -62,7 +62,7 @@
                 android:layout_height="wrap_content"
                 android:padding="15dp"
                 android:text="DONE"
-                android:textColor="@color/accent_dark"
+                android:textColor="@color/text_white"
                 android:textSize="16dp"
                 android:visibility="invisible"/>
         </RelativeLayout>

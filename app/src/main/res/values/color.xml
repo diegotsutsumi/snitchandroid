@@ -27,6 +27,7 @@
     <item name="background" type="color">#343434</item>
     <item name="background_light" type="color">#595959</item>
     <item name="text_grey" type="color">#E4E4E4</item>
+    <item name="text_darkgrey" type="color">#A3A3A3</item>
 
     <item name="colorPrimary" type="color">#A42E0B</item>
     <item name="colorPrimaryDark" type="color">#832408</item>
