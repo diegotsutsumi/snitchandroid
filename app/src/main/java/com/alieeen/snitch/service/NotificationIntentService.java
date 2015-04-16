@@ -13,6 +13,12 @@ import android.os.SystemClock;
 import android.support.v4.app.NotificationCompat;
 import android.util.Log;
 
+
+import com.alieeen.snitch.DetailsActivity_;
+import com.alieeen.snitch.R;
+import com.alieeen.snitch.SnitchApplication;
+import com.alieeen.snitch.helper.ImageHandler;
+import com.alieeen.snitch.rest.SnitchHttpClient;
 import com.google.android.gms.gcm.GoogleCloudMessaging;
 
 import java.text.SimpleDateFormat;
@@ -59,10 +65,14 @@ public class NotificationIntentService extends IntentService {
 
                 Log.i(TAG, "Completed work @ " + SystemClock.elapsedRealtime());
 
+
                 // Post notification of received message.
                 // sendNotification(extras.toString());
                 String p = intent.getExtras().getString("str");
                 String[] parameters = p.split(";");
+
+                Log.i("TAG", "send notification");
+                sendNotification(parameters);
 
                 String camName = parameters[0];
 
@@ -87,7 +97,7 @@ public class NotificationIntentService extends IntentService {
                 datasource.createEvent(camName, dateTime, eventId, eventId, 0);
                 datasource.close();*/
 
-                new SaveImage().execute(eventId, eventId);
+                //new SaveImage().execute(eventId, eventId);
                 sendNotification(parameters);
 
                 Log.i(TAG, "Received: " + extras.toString());
@@ -104,7 +114,7 @@ public class NotificationIntentService extends IntentService {
         mNotificationManager = (NotificationManager) this
                 .getSystemService(Context.NOTIFICATION_SERVICE);
 
-        Intent new_intent = new Intent(this, ImageLoaderActivity.class);
+        Intent new_intent = new Intent(this, DetailsActivity_.class);
         new_intent.putExtra("camName", parameters[0]);
         new_intent.putExtra("dateTime", parameters[1]);
         new_intent.putExtra("url", parameters[2]);
@@ -122,6 +132,8 @@ public class NotificationIntentService extends IntentService {
                 .setContentTitle("Snitch")
                         //.setStyle(new NotificationCompat.BigTextStyle().bigText("Novo alarme!"))
                 .setContentText("(" + totalNotifications + ") " + "Novo alarme!");
+
+        Log.i(TAG, "sending notification......");
 
         application.setTotalNotifications(totalNotifications);
 

@@ -18,5 +18,6 @@
     <string name="title_activity_splash_screen">SplashScreen</string>
     <string name="title_activity_walkthrough">WalkthroughActivity</string>
     <string name="title_activity_login">LoginActivity</string>
+    <string name="title_activity_details">DetailsActivity</string>
 
 </resources>
