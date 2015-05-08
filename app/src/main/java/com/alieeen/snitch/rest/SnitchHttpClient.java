@@ -132,7 +132,8 @@ public class SnitchHttpClient {
             nameValuePairs.add(new BasicNameValuePair("username", username));
             nameValuePairs.add(new BasicNameValuePair("password", password));
             nameValuePairs.add(new BasicNameValuePair("mobilenumber", "55" + mobilenumber.substring(1)));
-            nameValuePairs.add(new BasicNameValuePair("googleid", getRegistrationId(context)));
+            //TODO
+            nameValuePairs.add(new BasicNameValuePair("googleid", "APA91bFgfDHVOupYZfpPoRnCUU1oqy4t_hW36575FoyLgqAi8LcI_AiKMRcg8g9Nd7oY84fG_MSgH3kI_1qbpH_qYP5HYtzdaIhC32PNuXvABoCUbSW2pU8UPaobbvuiu1rh8dm_4AZ4klfqMWHPO2aLnAb5ywssXA"));
 
             httppost.setEntity(new UrlEncodedFormEntity(nameValuePairs));
 

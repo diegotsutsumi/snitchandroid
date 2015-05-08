@@ -10,7 +10,7 @@
     <uses-permission android:name="android.permission.READ_CONTACT" />
 
     <permission
-        android:name="com.alieeen.snitchold.permission.C2D_MESSAGE"
+        android:name="com.alieeen.snitch.permission.C2D_MESSAGE"
         android:protectionLevel="signature" />
 
     <application
@@ -31,18 +31,14 @@
             <intent-filter>
                 <action android:name="com.google.android.c2dm.intent.RECEIVE" />
 
-                <category android:name="com.example.gcmclient" />
+                <category android:name="com.alieeen.snitch" />
             </intent-filter>
         </receiver>
 
         <activity
-            android:name=".SplashScreen"
+            android:name=".SplashScreen_"
             android:label="@string/title_activity_splash_screen" >
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
 
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
         </activity>
 
         <service android:name=".service.GcmIntentService" />
@@ -63,6 +59,16 @@
         <activity
             android:name=".DetailsActivity_"
             android:label="@string/title_activity_details" >
+        </activity>
+        <activity
+            android:name=".InitialActivity"
+            android:label="@string/title_activity_initial" >
+
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
         </activity>
     </application>
 

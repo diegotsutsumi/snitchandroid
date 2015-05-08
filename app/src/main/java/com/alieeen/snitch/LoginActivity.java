@@ -33,7 +33,7 @@ public class LoginActivity extends ActionBarActivity {
         setContentView(R.layout.activity_login);
 
         phoneNumber = getPhoneNumber();
-        if (phoneNumber.isEmpty()) {
+        if ("".equals(phoneNumber) || phoneNumber == null) {
             mAdapter = new LoginAdapter(getSupportFragmentManager(), false);
         } else {
             mAdapter = new LoginAdapter(getSupportFragmentManager(), false);
