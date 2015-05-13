@@ -12,6 +12,7 @@ import android.view.ViewGroup;
 
 import com.alieeen.snitch.R;
 import com.alieeen.snitch.adapter.EventsAdapter;
+import com.alieeen.snitch.database.EventsDataSource;
 import com.alieeen.snitch.model.Event;
 
 import java.util.ArrayList;
@@ -55,7 +56,9 @@ public class EventsFragment extends Fragment {
 
         RecyclerView recyclerView = (RecyclerView) v.findViewById(R.id.recyclerView);
         recyclerView.setHasFixedSize(true);
-        EventsAdapter adapter = new EventsAdapter(getActivity(), createMockList(10));
+        //EventsAdapter adapter = new EventsAdapter(getActivity(), createMockList(10));
+        List<Event> list = EventsDataSource.getAllEvents(getActivity().getApplicationContext());
+        EventsAdapter adapter = new EventsAdapter(getActivity(), list);
         ScaleInAnimationAdapter alphaAdapter = new ScaleInAnimationAdapter(adapter);
         alphaAdapter.setFirstOnly(false);
         recyclerView.setAdapter(alphaAdapter);

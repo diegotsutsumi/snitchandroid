@@ -144,7 +144,8 @@ public class SplashScreen extends ActionBarActivity implements Runnable{
                 if (checkPlayServices())
                 {
                     gcm = GoogleCloudMessaging.getInstance(context);
-                    regid = getRegistrationId(context);
+                    //regid = getRegistrationId(context);
+                    regid = SharedPrefs.getRegistrationId(context);
 
                     if (regid.isEmpty())
                     {
@@ -227,9 +228,9 @@ public class SplashScreen extends ActionBarActivity implements Runnable{
 
     private boolean registerDevice ()
     {
-
         Log.i(TAG,"registering device");
         boolean result;
+
         try {
             if (gcm == null) {
                 gcm = GoogleCloudMessaging.getInstance(context);
@@ -239,7 +240,8 @@ public class SplashScreen extends ActionBarActivity implements Runnable{
             result = true;
 
             // Persist the regID
-            storeRegistrationId(context, regid);
+            //storeRegistrationId(context, regid);
+            SharedPrefs.setRegistrationId(context, regid);
         } catch (IOException ex) {
             result = false;
             // If there is an error, don't just keep trying to register.
@@ -288,7 +290,8 @@ public class SplashScreen extends ActionBarActivity implements Runnable{
             // message using the 'from' address in the message.
 
             // Persist the regID - no need to register again.
-            storeRegistrationId(this, regid);
+            //storeRegistrationId(this, regid);
+            SharedPrefs.setRegistrationId(context, regid);
         } catch (IOException ex) {
             msg = "Error :" + ex.getMessage();
             // If there is an error, don't just keep trying to register.
@@ -309,7 +312,7 @@ public class SplashScreen extends ActionBarActivity implements Runnable{
      * @param regId
      *            registration ID
      */
-    private void storeRegistrationId(Context context, String regId) {
+   /* private void storeRegistrationId(Context context, String regId) {
         final SharedPreferences prefs = getGCMPreferences(context);
         int appVersion = getAppVersion(context);
         Log.i(TAG, "Saving regId on app version " + appVersion);
@@ -317,7 +320,7 @@ public class SplashScreen extends ActionBarActivity implements Runnable{
         editor.putString(PROPERTY_REG_ID, regId);
         editor.putInt(PROPERTY_APP_VERSION, appVersion);
         editor.commit();
-    }
+    }*/
 
     @Override
     protected void onResume() {
@@ -354,7 +357,7 @@ public class SplashScreen extends ActionBarActivity implements Runnable{
      * @return registration ID, or empty string if there is no existing
      *         registration ID.
      */
-    private String getRegistrationId(Context context) {
+    /*private String getRegistrationId(Context context) {
         final SharedPreferences prefs = getGCMPreferences(context);
         String registrationId = prefs.getString(PROPERTY_REG_ID, "");
         if (registrationId.isEmpty()) {
@@ -374,7 +377,7 @@ public class SplashScreen extends ActionBarActivity implements Runnable{
 
         Log.i(TAG, "registrationId = "+ registrationId);
         return registrationId;
-    }
+    }*/
 
     // ...
     /**
