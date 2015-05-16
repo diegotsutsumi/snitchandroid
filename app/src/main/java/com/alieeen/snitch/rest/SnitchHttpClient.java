@@ -6,6 +6,7 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 
 import com.alieeen.snitch.SnitchApplication;
+import com.alieeen.snitch.util.SharedPrefs;
 
 import org.apache.http.HttpEntity;
 import org.apache.http.HttpResponse;
@@ -80,7 +81,7 @@ public class SnitchHttpClient {
 		return ret;
 	}*/
 
-    public HttpClient getNewHttpClient()
+    public static HttpClient getNewHttpClient()
     {
         try {
             KeyStore trustStore = KeyStore.getInstance(KeyStore.getDefaultType());
@@ -105,7 +106,7 @@ public class SnitchHttpClient {
         }
     }
 
-    public boolean doLogin(Context context, String username, String password, String mobilenumber)
+    public static boolean doLogin(Context context, String username, String password, String mobilenumber)
     {
         String responseBody = "";
         try
@@ -216,48 +217,14 @@ public class SnitchHttpClient {
         editor.commit();
     }
 
-    public String getUsername (Context context)
-    {
-        SharedPreferences settings = context.getSharedPreferences(SNITCH_LOGIN_FILE, Context.MODE_PRIVATE);
-        String username = settings.getString("username", "");
-        return username;
-    }
-
-    public String getPassword (Context context)
-    {
-        SharedPreferences settings = context.getSharedPreferences(SNITCH_LOGIN_FILE, Context.MODE_PRIVATE);
-        String password = settings.getString("password", "");
-        return password;
-    }
-
-    public String getMobileNumber (Context context)
-    {
-        SharedPreferences settings = context.getSharedPreferences(SNITCH_LOGIN_FILE, Context.MODE_PRIVATE);
-        String mobile = settings.getString("mobilenumber", "");
-        return mobile;
-    }
-
-    public String getRegistrationId (Context context)
-    {
-        SharedPreferences prefs = context.getSharedPreferences(SNITCH_REGID_FILE, Context.MODE_PRIVATE);
-        String registrationId = prefs.getString("registration_id", "");
-        return registrationId;
-    }
-
-    public SharedPreferences getRegIdFile(Context context)
-    {
-        return context.getSharedPreferences(SNITCH_REGID_FILE, Context.MODE_PRIVATE);
-    }
-
-    public Bitmap downloadBitmap(Context context, String eventId)
+    public static Bitmap downloadBitmap(Context context, String eventId)
     {
         try
         {
-            int i = Integer.parseInt(eventId.replaceAll("[\\D]", ""));
+            int i = Integer.parseInt(eventId.replaceAll("[\\D]", ""));  // Tratamento para evitar caracteres "estranhos" no id
             eventId = String.valueOf(i);
-            //String url = SNITCH_URL + "/getImage/" + eventId;
 
-            String url = getPreferences(context, "url");
+            String url = SharedPrefs.getUrl(context);
             if (url.isEmpty()) return null;
 
             url += "/android/getImage/" + eventId;
@@ -271,7 +238,7 @@ public class SnitchHttpClient {
 
             if (store == null || httpcontext == null)
             {
-                if (doLogin(context, getUsername(context), getPassword(context), getMobileNumber(context)))
+                if (doLogin(context, SharedPrefs.getUsername(context), SharedPrefs.getPassword(context), SharedPrefs.getMobileNumber(context)))
                     return null;
                 else
                 {
@@ -304,7 +271,7 @@ public class SnitchHttpClient {
 
                 if (s.contains("not logged in"))	// N�o est� logado
                 {
-                    if (doLogin(context, getUsername(context), getPassword(context), getMobileNumber(context)))	// Try Login
+                    if (doLogin(context, SharedPrefs.getUsername(context), SharedPrefs.getPassword(context), SharedPrefs.getMobileNumber(context)))	// Try Login
                         return downloadBitmap(context, eventId);
                     else
                         return null;
@@ -317,7 +284,7 @@ public class SnitchHttpClient {
             //e.printStackTrace();
 
             ////// Esse tratamento � s� para quando expirar a sess�o
-            if (doLogin(context, getUsername(context), getPassword(context), getMobileNumber(context)))	// Try Login
+            if (doLogin(context, SharedPrefs.getUsername(context), SharedPrefs.getPassword(context), SharedPrefs.getMobileNumber(context)))	// Try Login
                 return downloadBitmap(context, eventId);
             else
                 return null;
@@ -335,7 +302,7 @@ public class SnitchHttpClient {
         editor.commit();
     }
 
-    public String getPreferences(Context context, String preference)
+    /*public String getPreferences(Context context, String preference)
     {
         SharedPreferences settings = context.getSharedPreferences(SNITCH_PREFERENCES_FILE, Context.MODE_PRIVATE);
 
@@ -345,7 +312,7 @@ public class SnitchHttpClient {
             return username;
         }
         else return "";
-    }
+    }*/
 
 	/*public void sendRegistrationIdToBackend(Context context)
 	{

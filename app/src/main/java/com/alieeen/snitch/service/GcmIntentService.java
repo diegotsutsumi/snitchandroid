@@ -101,7 +101,7 @@ public class GcmIntentService extends IntentService {
                 // Save Event in database
                 EventsDataSource.saveEvent(getApplicationContext(), event);
 
-                //new SaveImage().execute(eventId, eventId);
+                new SaveImage().execute(event.getNumber(), event.getImageName());
                 sendNotification(parameters);
 
                 Log.i(TAG, "Received: " + extras.toString());
@@ -169,8 +169,7 @@ public class GcmIntentService extends IntentService {
                 imgName = args[1];
                 String eventId = args[0];
 
-                SnitchHttpClient snitchHttp = new SnitchHttpClient();
-                bitmap = snitchHttp.downloadBitmap(getApplicationContext(), eventId);
+                bitmap = SnitchHttpClient.downloadBitmap(getApplicationContext(), eventId);
 
             } catch (Exception e) {
                 e.printStackTrace();
@@ -182,8 +181,7 @@ public class GcmIntentService extends IntentService {
         {
             if(image != null)
             {
-                ImageHandler imgHandler = new ImageHandler();
-                imgHandler.Save(getApplicationContext(), image, imgName);
+                ImageHandler.Save(getApplicationContext(), image, imgName);
             }
         }
     }

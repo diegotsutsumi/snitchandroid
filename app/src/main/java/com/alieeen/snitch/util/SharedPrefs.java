@@ -16,6 +16,10 @@ public class SharedPrefs {
     private static final String LOGGED = "logged_in";
     private static final String PROPERTY_APP_VERSION = "appVersion";
     private static final String PROPERTY_REG_ID = "registration_id";
+    private static final String PROPERTY_URL = "url";
+    private static final String PROPERTY_USERNAME = "username";
+    private static final String PROPERTY_PASSWORD = "password";
+    private static final String PROPERTY_MOBILE_NUMBER = "mobilenumber";
 
     public static void setLoggedIn(Context context) {
         SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(context);
@@ -63,6 +67,36 @@ public class SharedPrefs {
             // should never happen
             throw new RuntimeException("Could not get package name: " + e);
         }
+    }
+
+    public static String getUrl(Context context)
+    {
+        /*SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(context);
+        String url = preferences.getString(PROPERTY_URL, "");*/
+        ///TESTES////////
+        String url = "https://snitch.magnetron.com.br:60001";
+        return url;
+    }
+
+    public static String getUsername (Context context)
+    {
+        SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(context);
+        String username = preferences.getString(PROPERTY_USERNAME, "");
+        return username;
+    }
+
+    public static String getPassword (Context context)
+    {
+        SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(context);
+        String password = preferences.getString(PROPERTY_PASSWORD, "");
+        return password;
+    }
+
+    public static String getMobileNumber (Context context)
+    {
+        SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(context);
+        String mobile = preferences.getString(PROPERTY_MOBILE_NUMBER, "");
+        return mobile;
     }
 
 }

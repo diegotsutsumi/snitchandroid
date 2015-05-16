@@ -181,11 +181,15 @@ public class SplashScreen extends ActionBarActivity implements Runnable{
 
                     if (result)
                     {
-                        SnitchHttpClient snitchHttp = new SnitchHttpClient();
+                        /*SnitchHttpClient snitchHttp = new SnitchHttpClient();
                         snitchHttp.doLogin(context,
                                 snitchHttp.getUsername(context),
                                 snitchHttp.getPassword(context),
-                                snitchHttp.getMobileNumber(context));
+                                snitchHttp.getMobileNumber(context));*/
+                        SnitchHttpClient.doLogin(context,
+                                SharedPrefs.getUsername(context),
+                                SharedPrefs.getPassword(context),
+                                SharedPrefs.getMobileNumber(context));
 
                         ret = STATE.LOGGED;
                     }

@@ -13,7 +13,7 @@ import java.io.FileOutputStream;
  */
 public class ImageHandler {
 
-    public void Save(Context context, Bitmap b, String imgName) {
+    public static void Save(Context context, Bitmap b, String imgName) {
         try {
             if (Load(context, imgName) != null)    // Prote��o para n�o salvar imagem com o mesmo nome
                 return;
@@ -29,7 +29,7 @@ public class ImageHandler {
 
     }
 
-    public Bitmap Load(Context context, String imgName) {
+    public static Bitmap Load(Context context, String imgName) {
         try {
             File file = new File(context.getApplicationContext().getFilesDir().getAbsolutePath(), imgName);
             //FileInputStream fis = context.openFileInput(file);
@@ -43,7 +43,7 @@ public class ImageHandler {
         return null;
     }
 
-    public void Delete(Context context, String imgName) {
+    public static void Delete(Context context, String imgName) {
         File file = new File(context.getApplicationContext().getFilesDir().getAbsolutePath(), imgName);
         file.delete();
     }
