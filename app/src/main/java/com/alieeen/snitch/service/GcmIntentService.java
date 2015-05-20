@@ -73,7 +73,7 @@ public class GcmIntentService extends IntentService {
                 String[] parameters = p.split(";");
 
                 Log.i("TAG", "send notification");
-                sendNotification(parameters);
+                //sendNotification(parameters);
 
                 Event event = new Event();
                 event.setCameraName(parameters[0]);
