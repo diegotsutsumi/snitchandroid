@@ -17,9 +17,9 @@ import java.util.ArrayList;
  */
 public class EventsDataSource {
     // Database fields
-    private SQLiteDatabase database;
-    private SQLiteHelper dbHelper;
-    private String[] allColumns = {
+    private static SQLiteDatabase database;
+    private static SQLiteHelper dbHelper;
+    private static String[] allColumns = {
             SQLiteHelper.COLUMN_ID,
             SQLiteHelper.COLUMN_CAMERANAME,
             SQLiteHelper.COLUMN_DATETIME,
@@ -32,23 +32,26 @@ public class EventsDataSource {
         dbHelper = new SQLiteHelper(context);
     }
 
-    public void open() throws SQLException {
+    private static void open(Context context) throws SQLException {
+        dbHelper = new SQLiteHelper(context);
         database = dbHelper.getWritableDatabase();
     }
 
-    public void close() {
+    private static void close() {
         dbHelper.close();
     }
 
-    public Event createEvent(String camName, String dateTime, String imgName, String number, int viewed) {
-        ContentValues values = new ContentValues();
-        values.put(SQLiteHelper.COLUMN_CAMERANAME, camName);
-        values.put(SQLiteHelper.COLUMN_DATETIME, dateTime);
-        values.put(SQLiteHelper.COLUMN_IMAGENAME, imgName);
-        values.put(SQLiteHelper.COLUMN_NUMBER, number);
-        values.put(SQLiteHelper.COLUMN_VIEWED, viewed);
+    //public static Event createEvent(String camName, String dateTime, String imgName, String number, int viewed) {
+    public static void saveEvent(Context context, Event event) {
 
-        open();
+        ContentValues values = new ContentValues();
+        values.put(SQLiteHelper.COLUMN_CAMERANAME, event.getCameraName());
+        values.put(SQLiteHelper.COLUMN_DATETIME, event.getDateTime());
+        values.put(SQLiteHelper.COLUMN_IMAGENAME, event.getImageName());
+        values.put(SQLiteHelper.COLUMN_NUMBER, event.getNumber());
+        values.put(SQLiteHelper.COLUMN_VIEWED, event.getViewed());
+
+        open(context);
         long insertId = database.insert(SQLiteHelper.TABLE_EVENTS, null, values);
 
         Cursor cursor = database.query(SQLiteHelper.TABLE_EVENTS,
@@ -59,23 +62,21 @@ public class EventsDataSource {
         Event newEvent = cursorToEvent(cursor);
         cursor.close();
         close();
-
-        return newEvent;
     }
 
-    public void deleteEvent(Event event) {
+    public void deleteEvent(Context context, Event event) {
         long id = event.getId();
 
     /*database.delete(SQLiteHelper.TABLE_EVENTS, SQLiteHelper.COLUMN_ID
         + " = " + id, null);*/
 
-        deleteEvent(id);
+        deleteEvent(context, id);
     }
 
-    public void deleteEvent(long id) {
+    public void deleteEvent(Context context, long id) {
         //String whereArgs [] = {String.valueOf(id)};
         try {
-            open();
+            open(context);
             database.delete(SQLiteHelper.TABLE_EVENTS, SQLiteHelper.COLUMN_ID
                     + " = " + id, null);
             close();
@@ -84,8 +85,8 @@ public class EventsDataSource {
         }
     }
 
-    public ArrayList<Event> getAllEvents() {
-        open();
+    public static ArrayList<Event> getAllEvents(Context context) {
+        open(context);
         ArrayList<Event> events = new ArrayList<Event>();
 
         Cursor cursor = database.query(SQLiteHelper.TABLE_EVENTS,
@@ -103,8 +104,8 @@ public class EventsDataSource {
         return events;
     }
 
-    public ArrayList<Event> getEvents(int limit) {
-        open();
+    public ArrayList<Event> getEvents(Context context, int limit) {
+        open(context);
         ArrayList<Event> events = new ArrayList<Event>();
 
         Cursor cursor = database.query(SQLiteHelper.TABLE_EVENTS,
@@ -122,8 +123,8 @@ public class EventsDataSource {
         return events;
     }
 
-    public ArrayList<Event> getNextEvents(long lastId, int quantity) {
-        open();
+    public ArrayList<Event> getNextEvents(Context context, long lastId, int quantity) {
+        open(context);
         ArrayList<Event> events = new ArrayList<Event>();
 
         Cursor cursor = database.query(SQLiteHelper.TABLE_EVENTS,
@@ -142,8 +143,8 @@ public class EventsDataSource {
         return events;
     }
 
-    public void updateViewed(long id, boolean viewed) {
-        open();
+    public void updateViewed(Context context, long id, boolean viewed) {
+        open(context);
 
         ContentValues newValues = new ContentValues();
         newValues.put(SQLiteHelper.COLUMN_VIEWED, viewed ? 1 : 0);
@@ -167,7 +168,7 @@ public class EventsDataSource {
 	  return event;
   }*/
 
-    private Event cursorToEvent(Cursor cursor) {
+    private static Event cursorToEvent(Cursor cursor) {
         Event event = new Event();
         event.setId(cursor.getLong(0));
         event.setCameraName(cursor.getString(1));

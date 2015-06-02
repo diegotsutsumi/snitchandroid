@@ -94,7 +94,7 @@ public class LoginActivity extends ActionBarActivity {
         }
 
         SnitchHttpClient snitchHttp = new SnitchHttpClient();
-        boolean result = snitchHttp.doLogin(getApplicationContext(), "admin", "admin1", "04191774268");
+        boolean result = snitchHttp.doLogin(getApplicationContext(), "christiano", "ddcnvr222", "04184447468");
 
         if (result) {
 

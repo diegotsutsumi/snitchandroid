@@ -16,7 +16,9 @@ import android.util.Log;
 import com.alieeen.snitch.DetailsActivity_;
 import com.alieeen.snitch.R;
 import com.alieeen.snitch.SnitchApplication;
+import com.alieeen.snitch.database.EventsDataSource;
 import com.alieeen.snitch.helper.ImageHandler;
+import com.alieeen.snitch.model.Event;
 import com.alieeen.snitch.rest.SnitchHttpClient;
 import com.google.android.gms.gcm.GoogleCloudMessaging;
 
@@ -71,32 +73,35 @@ public class GcmIntentService extends IntentService {
                 String[] parameters = p.split(";");
 
                 Log.i("TAG", "send notification");
-                sendNotification(parameters);
+                //sendNotification(parameters);
 
-                String camName = parameters[0];
+                Event event = new Event();
+                event.setCameraName(parameters[0]);
 
-                String dateTime;
+                String dateTime;                    // Date Time
                 try
                 {
+                    // Convert date time format
                     SimpleDateFormat oldFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
                     SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
-                    dateTime = dateFormat.format(oldFormat.parse(parameters[1]));
+                    event.setDateTime(dateFormat.format(oldFormat.parse(parameters[1])));
                 }
                 catch (Exception e)
                 {
-                    dateTime = parameters[1];
+                    event.setDateTime(parameters[1]);
                 }
 
                 String eventId = parameters[2];
                 int i = Integer.parseInt(eventId.replaceAll("[\\D]", ""));
-                eventId = String.valueOf(i);
+                event.setNumber(String.valueOf(i));
+                event.setImageName(String.valueOf(i));
 
-                /*EventDataSource datasource = new EventDataSource(this);
-                datasource.open();
-                datasource.createEvent(camName, dateTime, eventId, eventId, 0);
-                datasource.close();*/
+                event.setViewed(false);
 
-                //new SaveImage().execute(eventId, eventId);
+                // Save Event in database
+                EventsDataSource.saveEvent(getApplicationContext(), event);
+
+                new SaveImage().execute(event.getNumber(), event.getImageName());
                 sendNotification(parameters);
 
                 Log.i(TAG, "Received: " + extras.toString());
@@ -164,26 +169,7 @@ public class GcmIntentService extends IntentService {
                 imgName = args[1];
                 String eventId = args[0];
 
-                SnitchHttpClient snitchHttp = new SnitchHttpClient();
-                bitmap = snitchHttp.downloadBitmap(getApplicationContext(), eventId);
-
-                //bitmap = BitmapFactory.decodeStream((InputStream)new URL(args[0]).getContent());	// old way
-
-				/*InputStream inputStream = null;
-				SnitchApplication application = (SnitchApplication)getApplicationContext();
-				SnitchHttpClient snitchHttp = new SnitchHttpClient();
-
-				CookieStore store = application.getCookieStore();
-				HttpClient httpclient = snitchHttp.getNewHttpClient();
-				HttpContext httpcontext = application.getHttpContext();
-
-				httpcontext.setAttribute(ClientContext.COOKIE_STORE, store);
-
-				HttpResponse httpResponse = httpclient.execute(new HttpGet("https://christianobelli.no-ip.org:8082/android/getImage/1910"), httpcontext);
-	            // receive response as inputStream
-	            inputStream = httpResponse.getEntity().getContent();
-
-	            bitmap = BitmapFactory.decodeStream(inputStream);*/
+                bitmap = SnitchHttpClient.downloadBitmap(getApplicationContext(), eventId);
 
             } catch (Exception e) {
                 e.printStackTrace();
@@ -195,8 +181,7 @@ public class GcmIntentService extends IntentService {
         {
             if(image != null)
             {
-                ImageHandler imgHandler = new ImageHandler();
-                imgHandler.Save(getApplicationContext(), image, imgName);
+                ImageHandler.Save(getApplicationContext(), image, imgName);
             }
         }
     }
